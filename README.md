@@ -82,7 +82,7 @@ ClusterFluster/
 │   ├── 01_umap_hdbscan_10min.py       ← imports from utils
 │   └── 02_umap_hdbscan_overnight.py   ← imports from utils
 ├── data/
-│   └── example/                       ← place example DeepOF CSVs here
+│   └── example/                       ← # pending to be added
 ├── figures/                           ← output PDFs saved here (gitignored)
 ├── environment.yml
 ├── requirements.txt
