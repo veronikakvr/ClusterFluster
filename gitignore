@@ -1,0 +1,25 @@
+# Data & outputs
+data/
+figures/
+*.csv
+*.xlsx
+*.pdf
+*.svg
+
+# Cached model & bootstrap files (large binaries — store locally)
+*.sav
+*.joblib
+*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+.env
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
