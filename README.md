@@ -1,4 +1,4 @@
-# EthoCluster
+# ClusterFluster
 
 Unsupervised behavioural state discovery from rodent open-field recordings using UMAP dimensionality reduction and HDBSCAN density-based clustering of [DeepOF](https://github.com/mlfpm/deepof) output.
 
@@ -46,7 +46,7 @@ Raw DeepOF CSVs (male + female)
 ## Repository Structure
 
 ```
-EthoCluster/
+ClusterFluster/
 ├── scripts/
 │   ├── 01_umap_hdbscan_10min.py
 │   └── 02_umap_hdbscan_overnight.py   # coming soon
@@ -84,7 +84,7 @@ EthoCluster/
 
 ```bash
 conda env create -f environment.yml
-conda activate ethocluster
+conda activate clusterfluster
 ```
 
 **Or with pip:**
@@ -172,6 +172,7 @@ Cluster quality is assessed with four complementary metrics: DBCV (HDBSCAN-nativ
 If you use this pipeline in your research, please cite this repository and the relevant DeepOF paper:
 
 - Bordes *et al.* (2023) DeepOF. *NatComm*. https://doi.org/10.1038/s41467-023-40040-3
+
 
 ---
 

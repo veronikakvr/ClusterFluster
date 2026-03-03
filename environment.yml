@@ -1,4 +1,4 @@
-name: ethocluster
+name: clusterfluster
 channels:
   - conda-forge
   - defaults
