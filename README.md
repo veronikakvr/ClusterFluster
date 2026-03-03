@@ -171,9 +171,7 @@ Cluster quality is assessed with four complementary metrics: DBCV (HDBSCAN-nativ
 
 If you use this pipeline in your research, please cite this repository and the relevant DeepOF paper:
 
-- Luxem *et al.* (2023) DeepOF. *eLife*. https://doi.org/10.7554/eLife.85331
-- McInnes *et al.* (2018) UMAP. *arXiv*. https://arxiv.org/abs/1802.03426
-- Campello *et al.* (2013) HDBSCAN. *ECML PKDD*.
+- Bordes *et al.* (2023) DeepOF. *NatComm*. https://doi.org/10.1038/s41467-023-40040-3
 
 ---
 
