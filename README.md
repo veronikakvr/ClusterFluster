@@ -65,11 +65,11 @@ Raw DeepOF CSVs (Social Open Field: Control, PNS, ELS, PNELS × Male/Female)
   │  Cluster Validation & Profiling (DBCV, CH, DB, Heatmaps)│
   │  Multinomial Logit Modeling (Cluster ~ Condition * Sex) │
   │  Composition Stats (χ², Cramér's V, PERMANOVA)          │
-  │  Feature Stats (Kruskal-Wallis + Dunn + Violin Annotations)│
+  │  Feature Stats (Kruskal-Wallis + Dunn + Violin Annot.)  │
   │  Normalized Transition Networks (Directed, NetworkX)    │
   │  Behavioural Entropy & Planned MWU Comparisons          │
-  │  Biomarker Integration (Spearman Rank + FDR-BH Correction)│
-  │  Composite Cluster Distinctiveness Ranking (Top-k Selection)│
+  │  Biomarker Integration (Spearman Rank + FDR-BH Correct.)│
+  │  Composite Cluster Distinctiveness Ranking              │
   └─────────────────────────────────────────────────────────┘
 ```
 
