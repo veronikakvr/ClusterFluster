@@ -8,9 +8,10 @@ Unsupervised behavioural state discovery from rodent recordings using UMAP dimen
 
 | Script | Recording type | Key features |
 |--------|---------------|--------------|
-| `scripts/01_umap_hdbscan_10min.py` | Short (≤10 min) | UMAP training, HDBSCAN, OLS/GAM proportion models |
-| `scripts/02_umap_hdbscan_overnight.py` | Overnight (12 h) | Pre-trained UMAP, bootstrap stability, GEE + BW correction, Markov chains |
-| `scripts/utils.py` | — | Shared helper functions imported by both scripts |
+| `pipelines/10mins/01_umap_hdbscan_10min.py` | Short (≤10 min) | UMAP training, HDBSCAN, OLS/GAM proportion models |
+| `pipelines/10mins/v2_10min_pipeline.py` | Short (≤10 min) | expansion of 01 by parameter gridsearch |
+| `pipelines/overnight/02_umap_hdbscan_overnight.py` | Overnight (12 h) | Pre-trained UMAP, bootstrap stability, GEE + BW correction, Markov chains |
+| `pipelines/overnight/utils.py` | — | Shared helper functions imported by overnight script |
 
 ---
 
@@ -42,6 +43,34 @@ Raw DeepOF CSVs (male + female)
   │  Behavioural entropy                            │
   │  Temporal dynamics    (polar time plot)         │
   └─────────────────────────────────────────────────┘
+
+```
+### v2 10-minute recordings - cohort: doi: https://doi.org/10.64898/2026.01.26.701291 (`v2_10min_pipeline.py`)
+
+```
+Raw DeepOF CSVs (Social Open Field: Control, PNS, ELS, PNELS × Male/Female)
+        ↓
+  2-second interval aggregation (Sum, Mean, Std)
+        ↓
+  Filtering + Missing Value Imputation
+        ↓
+  Standard scaling & Embedding Caching
+        ↓
+  Automated Hyperparameter Grid Search (UMAP × HDBSCAN sweep)
+  (Evaluated via DBCV, Silhouette, Noise Penalty, & Cluster Count Tent Function)
+        ↓
+  Final UMAP Projection + HDBSCAN Clustering
+        ↓
+  ┌─────────────────────────────────────────────────────────┐
+  │  Cluster Validation & Profiling (DBCV, CH, DB, Heatmaps)│
+  │  Multinomial Logit Modeling (Cluster ~ Condition * Sex) │
+  │  Composition Stats (χ², Cramér's V, PERMANOVA)          │
+  │  Feature Stats (Kruskal-Wallis + Dunn + Violin Annotations)│
+  │  Normalized Transition Networks (Directed, NetworkX)    │
+  │  Behavioural Entropy & Planned MWU Comparisons          │
+  │  Biomarker Integration (Spearman Rank + FDR-BH Correction)│
+  │  Composite Cluster Distinctiveness Ranking (Top-k Selection)│
+  └─────────────────────────────────────────────────────────┘
 ```
 
 ### Overnight recordings (`02_umap_hdbscan_overnight.py`)
@@ -77,10 +106,13 @@ Raw DeepOF CSVs (male + female, 12 h)
 
 ```
 ClusterFluster/
-├── scripts/
-│   ├── utils.py                       ← shared functions
-│   ├── 01_umap_hdbscan_10min.py       ← imports from utils
+├── pipelines/
+│   ├── 10mins
+│   └── 01_umap_hdbscan_10min.py       ← original clustering for OFSI   
+│   └── v2_10min_pipeline.py           ← grid-optimized pipeline v2 for OFSI
+│   ├── overnight
 │   └── 02_umap_hdbscan_overnight.py   ← imports from utils
+│   └── utils.py                       ← functions
 ├── data/
 │   └── example/                       ← # pending to be added
 ├── figures/                           ← output PDFs saved here (gitignored)
@@ -141,9 +173,11 @@ LOAD_BOOTSTRAP  = True    # True = load cached results; False = re-run from scra
 ### 2. Run
 
 ```bash
-python scripts/01_umap_hdbscan_10min.py
+python pipelines/10mins/01_umap_hdbscan_10min.py
 # or
-python scripts/02_umap_hdbscan_overnight.py
+python pipelines/10mins/v2_10min_pipeline.py
+# or
+python pipelines/overnight/02_umap_hdbscan_overnight.py
 ```
 
 All figures are saved as vector PDFs to the `figures/` directory.
